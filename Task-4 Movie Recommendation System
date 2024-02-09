@@ -1,0 +1,59 @@
+class Movie:
+    def __init__(self, title, genre):
+        self.title = title
+        self.genre = genre
+        
+class MovieRecommendationSystem:
+    def __init__(self):
+        self.movies = []
+        
+    def add_movie(self ,title, genre):
+        movie = Movie(title, genre)
+        self.movies.append(movie)
+        
+    def recommend_movies(self, user_genre_preference):
+        recommended_movies = []
+        
+        for movie in self.movies:
+            if movie.genre.lower() == user_genre_preference.lower():
+                recommended_movies.append(movie)
+                
+        return recommended_movies
+        
+if __name__ == "__main__":
+    recommendation_system = MovieRecommendationSystem()
+
+# Action movies
+recommendation_system.add_movie("Die Hard", "Action")
+recommendation_system.add_movie("Mission Impoosible", "Action")
+recommendation_system.add_movie("The Extraction", "Action")
+recommendation_system.add_movie("The Expandables", "Action")
+recommendation_system.add_movie("Venom", "Action")
+recommendation_system.add_movie("Terminator 2: Judgement Day", "Action")
+
+#Comedy movies
+recommendation_system.add_movie("Game night", "Comedy")
+recommendation_system.add_movie("free guy", "Comedy")
+recommendation_system.add_movie("spy", "Comedy")
+recommendation_system.add_movie("the mask", "Comedy")
+recommendation_system.add_movie("vaction friends", "Comedy")
+recommendation_system.add_movie("booksmart", "Comedy")
+recommendation_system.add_movie("the french dispatch", "Comedy")
+
+#fiction
+recommendation_system.add_movie("iron man", "fiction")
+recommendation_system.add_movie("thor", "fiction")
+recommendation_system.add_movie("captain america:the first avengers", "fiction")
+recommendation_system.add_movie("guardians of the galaxy", "fiction")
+recommendation_system.add_movie("avengers:endgame", "fiction")
+
+user_preference = input("enter your genre preference (Action, Comedy, or fiction): ")
+
+recommended_movies = recommendation_system.recommend_movies(user_preference)
+
+if recommended_movies:
+    print(f"Recommended Movies for {user_preference} lovers:")
+    for movie in recommended_movies:
+        print(movie.title)
+else:
+    print(f"No {user_preference} movies found in the database.")
